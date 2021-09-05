@@ -3,7 +3,7 @@ const setSortBy = (name) => ({
     payload: name, 
 });
 
-const setCategore = (index) => ({
+const setCategory = (index) => ({
     type: 'SET_CATEGORY',
     payload: index,
 });

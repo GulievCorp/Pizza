@@ -16,4 +16,4 @@ const fillters = (state = initialState, action) => {
     return state;
 }
 
-export default fillters
+export default fillters;

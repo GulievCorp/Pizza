@@ -2,6 +2,7 @@ import React from 'react'
 import {Categories, SortPopup, PizzaBlock} from '../components/index';
 
 function Home({items}) {
+
     return (
       <div className="container">
         <div className="content__top">

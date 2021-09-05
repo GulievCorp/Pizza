@@ -1,17 +1,14 @@
-import { createStore, combineReducers } from "redux";
-import filltersReducer from '../reducers/fillters';
-import pizzasReducer from "../reducers/pizzas";
+import { createStore } from "redux";
 
-const rootReducer = combineReducers({
-    filltersReducer,
-    pizzasReducer
-})
+import rootReducer from "../reducers";
 
-const store = createStore(rootReducer);
-
-console.log(rootReducer);
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
 
 store.subscribe(() => console.log(store.getState()))
 
+window.store = store;
 
 export default store;
