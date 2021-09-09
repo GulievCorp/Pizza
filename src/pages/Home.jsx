@@ -44,8 +44,6 @@ function Home() {
     <div className="container">
       <div className="content__top">
         <Categories
-          onClickItem={(index) => onSelectCategory(index)}
-          onClick={(item) => console.log(item)}
           items={categoryNames}
         />
         <SortPopup

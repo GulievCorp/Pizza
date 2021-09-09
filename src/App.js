@@ -2,7 +2,6 @@ import React from 'react';
 import './index.scss';
 import { Header, Home, Cart } from '../src/components/index';
 import { Route } from 'react-router-dom';
-import {useDispatch} from 'react-redux';
 
 
 
