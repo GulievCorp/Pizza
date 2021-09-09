@@ -8,10 +8,10 @@ import { setCategory } from '../actions/fillters';
 const Categories = React.memo((props) => {
   const [activeItem, setActiveItem] = useState(0);
   const dispatch = useDispatch();
-  const onSelectItem = (index) => {
+  const onSelectItem = React.useCallback((index) => {
     dispatch(setCategory(index));
     setActiveItem(index);
-  };
+  }, []);
 
 
   const { items } = props;
