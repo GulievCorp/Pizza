@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import {setSortBy} from '../actions/fillters';
 const SortPopup = React.memo(function SortPopup({ items }) {
+  const dispatch = useDispatch();
+
   const [visiblePopup, setVisiblePopup] = useState(false);
   const [activeItem, setactiveItem] = useState(0);
   let activeLabel = items[activeItem].name;
 
   const onSelectItem = (index) => {
+    dispatch(setSortBy(index))
     setactiveItem(index);
   };
 

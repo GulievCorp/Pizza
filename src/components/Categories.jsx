@@ -1,17 +1,18 @@
 import { render } from '@testing-library/react';
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setCategory } from '../actions/fillters';
+
+
 
 const Categories = React.memo((props) => {
   const [activeItem, setActiveItem] = useState(0);
-
   const dispatch = useDispatch();
-
   const onSelectItem = (index) => {
     dispatch(setCategory(index));
     setActiveItem(index);
   };
+
 
   const { items } = props;
   let item =
