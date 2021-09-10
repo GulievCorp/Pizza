@@ -1,6 +1,5 @@
-import { render } from '@testing-library/react';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { setCategory } from '../actions/fillters';
 
 
