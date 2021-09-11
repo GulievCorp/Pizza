@@ -8,6 +8,7 @@ const Categories = React.memo((props) => {
   const [activeItem, setActiveItem] = useState(null);
   const dispatch = useDispatch();
   const { category, sortBy } = useSelector(({ filters }) => filters);
+  
   const onSelectItem = React.useCallback((index) => {
     dispatch(setCategory(index));
     setActiveItem(index);
