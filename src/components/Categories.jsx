@@ -5,7 +5,7 @@ import { fetchPizzas } from '../actions/pizzas';
 
 
 const Categories = React.memo((props) => {
-  const [activeItem, setActiveItem] = useState(0);
+  const [activeItem, setActiveItem] = useState(null);
   const dispatch = useDispatch();
   const { category, sortBy } = useSelector(({ filters }) => filters);
   const onSelectItem = React.useCallback((index) => {
@@ -17,15 +17,13 @@ const Categories = React.memo((props) => {
     dispatch(fetchPizzas(sortBy, category));
   }, [category, sortBy]);
 
-
-
   const { items } = props;
   let item =
     items &&
     items.map((item, index) => {
       return (
         <li
-          className={activeItem === index ? 'active' : ''}
+          className={category === index ? 'active' : ''}
           onClick={() => onSelectItem(index)}
           k
           ey={index}>

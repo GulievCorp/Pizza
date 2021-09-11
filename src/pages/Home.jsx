@@ -23,16 +23,15 @@ function Home() {
 
   const items = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
-  const {categories, sortBy} = useSelector(({filters}) => filters);
+
 
 
 
   useEffect(() => {
     if(!items.lenght){
       console.log(dispatch(fetchPizzas()))
-      console.log(categories, sortBy);
     }
-  }, [categories]);
+  }, []);
 
   return (
     <div className="container">
