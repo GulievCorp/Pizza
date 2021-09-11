@@ -1,4 +1,7 @@
+
 # Getting Started with Create React App
+
+IF YOU WANT START MY PROJECT WITH JSON SERVER PLS USE COMMAND "npm run dev"
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
