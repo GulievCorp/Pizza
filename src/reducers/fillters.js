@@ -3,10 +3,10 @@
 const initialState = {
     category: null,
     sortBy: {
-        type: 'rating',
-        order: 'desc',
+      type: 'popular',
+      order: 'desc',
     },
-};
+  };
 const fillters = (state = initialState, action) => {
     if(action.type === 'SET_SORT_BY'){
         return {

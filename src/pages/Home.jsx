@@ -25,6 +25,8 @@ function Home() {
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
   const {categories, sortBy} = useSelector(({filters}) => filters);
 
+
+
   useEffect(() => {
     if(!items.lenght){
       console.log(dispatch(fetchPizzas()))

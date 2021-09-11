@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import { setCategory } from '../actions/fillters';
-
+import { fetchPizzas } from '../actions/pizzas';
 
 
 const Categories = React.memo((props) => {
   const [activeItem, setActiveItem] = useState(0);
   const dispatch = useDispatch();
+  const { category, sortBy } = useSelector(({ filters }) => filters);
   const onSelectItem = React.useCallback((index) => {
     dispatch(setCategory(index));
     setActiveItem(index);
   }, []);
+
+  React.useEffect(() => {
+    dispatch(fetchPizzas(sortBy, category));
+  }, [category, sortBy]);
+
 
 
   const { items } = props;
