@@ -19,7 +19,7 @@ const sortNames = [
 ]
 
 function Home() {
-  const dispatch = useDispatch();
+
 
   const items = useSelector(({ pizzas }) => pizzas.items);
   const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
@@ -27,11 +27,7 @@ function Home() {
 
 
 
-  useEffect(() => {
-    if(!items.lenght){
-      console.log(dispatch(fetchPizzas()))
-    }
-  }, []);
+
 
   return (
     <div className="container">

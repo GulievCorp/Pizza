@@ -9,7 +9,7 @@ const SortPopup = React.memo(function SortPopup({ items }) {
   let activeLabel = items[activeItem].name;
 
   const onSelectItem = (index) => {
-    dispatch(setSortBy(index))
+    dispatch(setSortBy(items[index]))
     setactiveItem(index);
   };
 
@@ -19,15 +19,8 @@ const SortPopup = React.memo(function SortPopup({ items }) {
     setVisiblePopup(!visiblePopup);
   };
 
-  React.useEffect(() => {
-    document.body.addEventListener('click', handleOutsideClick);
-  }, [visiblePopup]);
 
-  const handleOutsideClick = (e) => {
-    if (!e.path.includes(sortRef.current)) {
-      setVisiblePopup(false);
-    }
-  };
+
 
   const itemsSort = items.map((obj, index) => {
     return (

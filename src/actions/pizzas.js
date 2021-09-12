@@ -12,9 +12,9 @@ export const setPizzas = (items) => ({
 });
 
 // Получить пиццы. Fetch(используют для обращения к серверу. Название на уровне самого метода)
-export const fetchPizzas = () => (dispatch) => {
+export const fetchPizzas = (sortBy, categories) => (dispatch) => {
     dispatch(setLoaded(false));
-    axios.get(`http://localhost:3001/pizzas`).then((response) => {  
+    axios.get(`http://localhost:3001/pizzas?${categories !== null ? `category=${categories}` : ''}&_sort=${sortBy.type}&_order=${sortBy.order}`).then((response) => {  
         dispatch(setPizzas(response.data));
     });
 };
