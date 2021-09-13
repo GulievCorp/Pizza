@@ -1,19 +1,19 @@
 import { React, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-
-import LoadingPizzaBlock from './LoadingPizzaBlock';
-
+import { Button } from '..';
 
 
-function PizzaBlock({ name, price, imageUrl, types, sizes}) {
 
-  const [activeType, setactiveType] = useState(types[0]);
-  const [activeSize, setactiveSize] = useState(sizes[0]);
+
+function PizzaBlock({id, name, price, imageUrl, types, sizes, onClickAddPizza, addedCount}) {
+
+
+
+  const [activeType, setactiveType] = useState(0);
+  const [activeSize, setactiveSize] = useState(0);
   const availableSizes = [26, 30, 40];
   const typeNames = ['тонкое', 'традиционное'];
-
-
 
   const setOnSelectType = (index) => {
     setactiveType(index);
@@ -24,7 +24,17 @@ function PizzaBlock({ name, price, imageUrl, types, sizes}) {
     setactiveSize(index);
   };
 
-
+  const onAddPizza = () => {
+    const obj = {
+      id,
+      name, 
+      imageUrl,
+      price,
+      size: availableSizes[activeSize],
+      type: typeNames[activeType]
+    }
+    onClickAddPizza(obj)
+  }
 
   return (
     <div>
@@ -69,7 +79,7 @@ function PizzaBlock({ name, price, imageUrl, types, sizes}) {
         </div>
         <div className="pizza-block__bottom">
           <div className="pizza-block__price">от {price} ₽</div>
-          <div className="button button--outline button--add">
+          <Button onClick = {onAddPizza} className="button--add" outline>
             <svg
               width="12"
               height="12"
@@ -82,8 +92,8 @@ function PizzaBlock({ name, price, imageUrl, types, sizes}) {
               />
             </svg>
             <span>Добавить</span>
-            <i>2</i>
-          </div>
+            {addedCount && <i>{addedCount}</i>}
+          </Button>
         </div>
       </div>{' '}
     </div>
@@ -96,7 +106,9 @@ PizzaBlock.propTypes = {
   price: PropTypes.number.isRequired,
   types: PropTypes.arrayOf([PropTypes.number].isRequired),
   sizes: PropTypes.arrayOf([PropTypes.number].isRequired),
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  onAddPizza: PropTypes.func,
+  addedCount: PropTypes.number,
 };
 
 PizzaBlock.defaultProps = {
