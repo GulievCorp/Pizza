@@ -25,7 +25,7 @@ function Header() {
           </div>
           <div className="header__cart">
             <Link to="/cart">
-              <Button className="button--cart" onClick={() => console.log('aaaa')}>
+              <Button className="button--cart" >
                 <span>{totalPrice}</span>
                 <div className="button__delimiter"></div>
                 <svg

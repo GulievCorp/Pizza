@@ -5,3 +5,4 @@ export {default as SortPopup} from '../components/SortPopup';
 export {default as Home} from '../pages/Home';
 export {default as Cart} from '../pages/Cart';
 export {default as PizzaBlock} from './PizzaBlock/PizzaBlock';
+export {default as CartItem} from './CartItem';
