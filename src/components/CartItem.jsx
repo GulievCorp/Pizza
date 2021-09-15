@@ -1,16 +1,27 @@
 import React from 'react'
-import {useSelector} from 'react-redux';
 
-function CartItem({name, type, size, totalCount, totalSize, totalPrice }) {
+import { Button } from '.';
 
-    
+function CartItem({id, name, type, size, totalCount, totalPrice, removeItem, onMinus, onPlus, imageUrl}) {
+
+    const handleRemoveClick = () => {
+      removeItem(id)
+    }
+
+    const handlePlusItem = () => {
+      onPlus(id)
+    }
+
+    const handleMinusItem = () => {
+      onMinus(id)
+    }
 
     return (
         <div className="cart__item">
         <div className="cart__item-img">
           <img
             className="pizza-block__image"
-            src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+            src={imageUrl}
             alt="Pizza"
           />
         </div>
@@ -21,6 +32,7 @@ function CartItem({name, type, size, totalCount, totalSize, totalPrice }) {
         <div className="cart__item-count">
           <div className="button button--outline button--circle cart__item-count-minus">
             <svg
+            onClick = {handleMinusItem}
               width="10"
               height="10"
               viewBox="0 0 10 10"
@@ -39,6 +51,7 @@ function CartItem({name, type, size, totalCount, totalSize, totalPrice }) {
           <b>{totalCount}</b>
           <div className="button button--outline button--circle cart__item-count-plus">
             <svg
+            onClick = {handlePlusItem}
               width="10"
               height="10"
               viewBox="0 0 10 10"
@@ -59,7 +72,7 @@ function CartItem({name, type, size, totalCount, totalSize, totalPrice }) {
           <b>{totalPrice} ₽</b>
         </div>
         <div className="cart__item-remove">
-          <div className="button button--outline button--circle">
+          <Button onClick = {handleRemoveClick} className="button--circle" outline>
             <svg
               width="10"
               height="10"
@@ -75,7 +88,7 @@ function CartItem({name, type, size, totalCount, totalSize, totalPrice }) {
                 fill="#EB5A1E"
               />
             </svg>
-          </div>
+          </Button>
         </div>
       </div>
     )

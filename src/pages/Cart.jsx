@@ -1,7 +1,10 @@
 import React from 'react'
 import { CartItem } from '../components';
 import {useSelector, useDispatch} from 'react-redux';
-import {clearCart} from '../actions/cart';
+import {clearCart, removeCartItem, plusItem, minusItem } from '../actions/cart';
+import cartEmptyImage from '../assets/img/empty-cart.png';
+import {Link} from 'react-router-dom'
+
 function Cart() {
 
   const dispatch = useDispatch();
@@ -17,12 +20,26 @@ function Cart() {
       dispatch(clearCart());
     }
 
+    const onRemoveItem = (id) => {
+      if(window.confirm('Вы действительно хотите удалить ?')){
+        dispatch(removeCartItem(id));
+      }
+    }
+
+    const onPlusItem = (id) => {
+      dispatch(plusItem(id))
+    }
+
+    const onMinusItem = (id) => {
+      dispatch(minusItem(id))
+    }
+
   
 
     return (
         <div className="content">
         <div className="container container--cart">
-          <div className="cart">
+          {totalCount ? <div className="cart">
             <div className="cart__top">
               <h2 className="content__title">
                 <svg
@@ -99,7 +116,17 @@ function Cart() {
               {
                 addedPizzas.map(obj => {
 
-                  return <CartItem name = {obj.name} type={obj.type} size = {obj.size} totalPrice = {items[obj.id].totalPrice} totalCount = {items[obj.id].items.length}/>
+                  return <CartItem 
+                  id = {obj.id} 
+                  name = {obj.name} 
+                  type={obj.type} 
+                  size = {obj.size} 
+                  imageUrl = {obj.imageUrl}
+                  totalPrice = {items[obj.id].totalPrice} 
+                  totalCount = {items[obj.id].items.length} 
+                  removeItem  = {onRemoveItem}
+                  onMinus = {onMinusItem}
+                  onPlus = {onPlusItem}/>
                 })
               }
                 {/* <CartItem name='Пукнул пиццей' type='тонкое' size={26}/> */}
@@ -116,7 +143,7 @@ function Cart() {
                 </span>
               </div>
               <div className="cart__bottom-buttons">
-                <a href="/" className="button button--outline button--add go-back-btn">
+                <Link href="/" className="button button--outline button--add go-back-btn">
                   <svg
                     width="8"
                     height="14"
@@ -133,13 +160,23 @@ function Cart() {
                   </svg>
   
                   <span>Вернуться назад</span>
-                </a>
+                </Link>
                 <div className="button pay-btn">
                   <span>Оплатить сейчас</span>
                 </div>
               </div>
             </div>
-          </div>
+          </div> : <div className="cart cart--empty">
+            <h2>Корзина пустая <icon>😕</icon></h2>
+            <p>
+              Вероятней всего, вы не заказывали ещё пиццу.<br />
+              Для того, чтобы заказать пиццу, перейди на главную страницу.
+            </p>
+            <img src={cartEmptyImage} alt="Empty cart" />
+            <Link to="/" className="button button--black">
+              <span>Вернуться назад</span>
+            </Link>
+          </div>}
         </div>
       </div>
     )

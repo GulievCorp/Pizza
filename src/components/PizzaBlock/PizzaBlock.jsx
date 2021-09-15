@@ -45,7 +45,7 @@ function PizzaBlock({id, name, price, imageUrl, types, sizes, onClickAddPizza, a
           <ul>
             {typeNames.map((item, index) => {
               return (
-                <li
+                <li key = {index}
                   className={activeType === index ? 'active' : ''}
                   onClick={() => setOnSelectType(index)}
                   key={index}
@@ -64,7 +64,7 @@ function PizzaBlock({id, name, price, imageUrl, types, sizes, onClickAddPizza, a
             <li>40 см.</li> */}
             {availableSizes.map((size, index) => {
               return (
-                <li
+                <li key = {index}
                   className={activeSize === index ? 'active' : ''}
                   onClick={() => setOnSelectSize(index)}
                   key={index} className = {classNames({
@@ -104,7 +104,6 @@ PizzaBlock.propTypes = {
   name: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  types: PropTypes.arrayOf([PropTypes.number].isRequired),
   sizes: PropTypes.arrayOf([PropTypes.number].isRequired),
   isLoading: PropTypes.bool,
   onAddPizza: PropTypes.func,
